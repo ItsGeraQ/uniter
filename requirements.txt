@@ -1,3 +1,5 @@
 fastapi==0.115.12
 openai==v1.71.0
 uvicorn
+motor
+boto3
