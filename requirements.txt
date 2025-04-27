@@ -3,3 +3,4 @@ openai==v1.71.0
 uvicorn
 motor
 boto3
+jwt
