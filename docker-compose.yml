@@ -2,7 +2,7 @@ version: "3.8"
 services:
   mongodb:
     image: mongodb/mongodb-community-server:7.0-ubuntu2204
-    container_name: mongodb
+    container_name: uniter-mongodb
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=secret
@@ -19,11 +19,14 @@ services:
       dockerfile: Dockerfile
     container_name: uniter-backend-main
     ports:
+      # server
       - "8001:8001"
+      # debug
+      - "5678:5678"
     environment:
       - MONGODB_URI=mongodb://admin:secret@db:27017/uniter?authSource=admin
       - PY_ENV=development
-    command: uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
+    command: python -m debugpy --listen 0.0.0.0:5678 -m uvicorn app.main:app --host 0.0.0.0 --port 8001 --reload
     depends_on:
       - mongodb
     volumes:
