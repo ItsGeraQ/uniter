@@ -1,6 +1,6 @@
-fastapi==0.115.12
+fastapi[all]
 openai==v1.71.0
-uvicorn
-motor
-boto3
-jwt
+motor==3.7.0
+boto3==1.38.8
+jwt==1.3.1
+debugpy
